@@ -2,6 +2,19 @@ import ReactQuill from "react-quill";
 import { useCallback, useMemo, useRef } from "react";
 import StorageService from "services/storage.service";
 
+const formats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image"
+];
 
 export function RichTextEditor(props: any) {
     const reactQuillRef = useRef<ReactQuill>(null);
@@ -26,7 +39,7 @@ export function RichTextEditor(props: any) {
 
     const modules = useMemo(() => ({
         toolbar: {
-            containers: [
+            container: [
                 ['bold', 'italic', 'underline', 'strike', 'blockquote'],
                 ['link', 'image', 'video', 'formula'],
 
@@ -50,7 +63,7 @@ export function RichTextEditor(props: any) {
         }
     }), []);
 
-    return <ReactQuill ref={reactQuillRef} theme="snow" modules={modules} {...props} />;
+    return <ReactQuill ref={reactQuillRef} theme="snow" modules={modules} formats={formats} {...props} />;
 }
 
 export default RichTextEditor;
