@@ -1,39 +1,56 @@
-import { Layout, Form, Input, Breadcrumb, Typography, Button, Radio, Select, Upload } from "antd";
-import { EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { Layout, Breadcrumb, Typography, App } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
-import RichTextEditor from "common/RichTextEditor";
 import PostService from "services/post.service";
 import { useEffect, useState } from "react";
 import 'react-quill/dist/quill.snow.css';
-import { Header } from "pages/Posts/Header";
+import PostHeader from "pages/Posts/PostHeader";
+import PostForm from "./PostForm";
+
+const layoutStyle = {
+    justifyContent: "center",
+    display: "flex",
+    alignItems: "center",
+    marginBottom: '10px'
+}
 
 export function PostPage() {
     let { postId } = useParams();
     const [post, setPost] = useState<any>(undefined);
-    const [content, setContent] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
-    const [form] = Form.useForm();
-
-    const normFile = (e: any) => {
-        console.log('Upload event:', e);
-        if (Array.isArray(e)) {
-            return e;
-        }
-        return e?.fileList;
-    };
+    const { message } = App.useApp();
 
     useEffect(() => {
         if (postId) {
-            PostService.getPost(postId).then((post) => {
-                setPost(post);
-                form.setFieldsValue(post);
-            })
+            PostService.getPost(postId).then((post) => setPost(post)).finally(() => setIsLoading(false));
         }
     }, [postId]);
 
+    const handleSubmit = (post: any) => {
+        console.log("form value", post);
+        if (postId) {
+            message.loading('Updating post...', 0);
+            PostService.updatePost(postId, post).then(() => {
+                message.destroy();
+                message.success('Update post successfully', 5);
+                navigate(-1);
+            }).catch((error) => {
+                message.destroy();
+                message.error('Update post failed: ' + error.message, 5);
+            });
+        }
+    }
+
+    if (isLoading)
+        return null;
+
+    if (!post) {
+        return <Typography.Text type='danger'>Post not found</Typography.Text>
+    }
+
     return (
-        <Layout style={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-            <Header>
+        <Layout style={layoutStyle}>
+            <PostHeader>
                 <Breadcrumb
                     items={[
                         { title: 'Home' },
@@ -41,100 +58,18 @@ export function PostPage() {
                         { title: 'Edit' }
                     ]}
                 />
-            </Header>
-            <Layout.Content>
-                <Form
-                    form={form}
-                    name='edit-post-form'
-                    validateMessages={{ required: 'This field is required!' }}
-                    colon={false}
-                    labelCol={{ span: 5 }}
-                    labelAlign='left'
-                    style={{ maxWidth: 800, margin: 'auto' }}
-                >
-                    <Form.Item label="Language" name="language" rules={[{ required: true }]}>
-                        <Radio.Group>
-                            <Radio.Button value="vn">VN</Radio.Button>
-                            <Radio.Button value="en">EN</Radio.Button>
-                        </Radio.Group>
-                    </Form.Item>
-                    <Form.Item
-                        label='Title'
-                        name='title'
-                        rules={[{
-                            required: true,
-                        }, { max: 100, message: 'Title must be less than 100 characters' }]}
-                    >
-                        <Input defaultValue={post?.title} placeholder="Let us know the title" />
-                    </Form.Item>
-
-                    <Form.Item
-                        label='Description'
-                        name='description'
-                        rules={[{ required: true, message: 'Please input your password!' },
-                        { min: 8, message: 'Password must be at least 8 characters long' }
-                        ]}
-                    >
-                        <Input.TextArea showCount maxLength={500} style={{ height: 150 }} placeholder="Describe your post here" />
-                    </Form.Item>
-                    <Form.Item label="Category" name="category" rules={[{ required: true }]} >
-                        <Select style={{ width: 130 }} placeholder="Category">
-                            <Select.Option value="media">Media</Select.Option>
-                            <Select.Option value="discover">Discover</Select.Option>
-                            <Select.Option value="update">Update</Select.Option>
-                            <Select.Option value="project">Project</Select.Option>
-                            <Select.Option value="project">Service</Select.Option>
-                        </Select>
-                    </Form.Item>
-                    <Form.Item
-                        name="thumbnail"
-                        label="Thumbnail"
-                        valuePropName="fileList"
-                        getValueFromEvent={normFile}
-                        rules={[{ required: true }]}
-
-                    >
-                        <Upload name="logo" listType="picture-card" maxCount={1}>
-                            <button
-                                style={{
-                                    border: 0,
-                                    background: 'none',
-                                    cursor: 'pointer',
-                                }}
-                                type="button"
-                            >
-                                <PlusOutlined />
-                                <div
-                                    style={{
-                                        marginTop: 8,
-                                    }}
-                                >
-                                    Upload
-                                </div>
-                            </button>
-                        </Upload>
-                    </Form.Item>
-                    <Form.Item style={{ margin: 0, height: "400px" }}
-                        label="Content"
-                        name="content"
-                        required
-                    >
-                        <RichTextEditor style={{ height: '300px' }} theme="snow" value={content} onChange={setContent} />
-                    </Form.Item>
-                    <div style={{ display: 'flex' }}>
-                        <Form.Item>
-                            <Button type='primary' htmlType='submit'>
-                                Draft
-                            </Button>
-                        </Form.Item>
-                        <Form.Item style={{ marginBottom: "0px" }}>
-                            <Button type='primary' htmlType='button'>
-                                Publish
-                            </Button>
-                        </Form.Item>
-                    </div>
-                </Form>
-            </Layout.Content>
+            </PostHeader>
+            {
+                !post && <Typography.Text type='danger'>Post not found</Typography.Text>
+            }
+            {
+                post && <Layout.Content>
+                    <PostForm initialData={post} onSubmit={handleSubmit} />
+                    <Layout.Footer style={{ textAlign: 'center' }}>
+                        <Typography.Text type='secondary'>Ethnicity Vietnam © 2024</Typography.Text>
+                    </Layout.Footer>
+                </Layout.Content>
+            }
         </Layout >
     );
 }

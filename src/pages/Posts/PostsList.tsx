@@ -1,5 +1,5 @@
 import { Divider, List, Skeleton, Space, Badge } from 'antd';
-import { CloudUploadOutlined, CalendarOutlined, UserOutlined } from '@ant-design/icons';
+import { CalendarOutlined, UserOutlined } from '@ant-design/icons';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import React, { useEffect, useState } from 'react';
 import PostService, { Post } from 'services/post.service';
@@ -10,6 +10,7 @@ const scrollableDivStyle = {
     height: 'calc(100vh - 220px)',
     overflow: 'auto',
     padding: '0 16px',
+    width: 800,
     border: '1px solid rgba(140, 140, 140, 0.35)',
 };
 

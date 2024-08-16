@@ -1,4 +1,5 @@
 import { Button, Checkbox, Form, Input, Layout, Typography, App } from 'antd';
+import { validateMessages } from 'constants/index';
 import AuthContext from 'contexts/AuthContext';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -64,16 +65,13 @@ export function LoginPage() {
                         initialValues={{ remember: false }}
                         onFinish={onFinish}
                         colon={false}
+                        validateMessages={validateMessages}
                     >
                         <Form.Item
                             label='Username'
                             name='username'
                             labelAlign='left'
-                            rules={[{
-                                required: true,
-                                message: 'Please input your username!',
-                                type: 'email'
-                            }]}
+                            rules={[{ required: true, type: 'email' }]}
                         >
                             <Input />
                         </Form.Item>
@@ -81,9 +79,7 @@ export function LoginPage() {
                             label='Password'
                             name='password'
                             labelAlign='left'
-                            rules={[{ required: true, message: 'Please input your password!' },
-                            { min: 8, message: 'Password must be at least 8 characters long' }
-                            ]}
+                            rules={[{ required: true }, { min: 8 }]}
                         >
                             <Input.Password />
                         </Form.Item>
@@ -91,9 +87,6 @@ export function LoginPage() {
                             <Form.Item name='remember' valuePropName='checked'>
                                 <Checkbox>Remember me</Checkbox>
                             </Form.Item>
-                            <Typography.Link style={{ marginTop: '3px' }} href='#'>
-                                Forgot password
-                            </Typography.Link>
                         </div>
                         <Form.Item style={{ marginBottom: "0px" }}>
                             <Button type='primary' htmlType='submit'>

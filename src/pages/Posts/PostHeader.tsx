@@ -1,8 +1,8 @@
 import { Layout, Typography } from "antd"
 import { EditOutlined } from "@ant-design/icons"
 
-export function Header({ children }: { children?: React.ReactNode }) {
-    return <Layout.Header style={{ backgroundColor: "#F5F5F5", width: 800, textAlign: "left", padding: 10, height: 'auto' }}>
+export function PostHeader({ children }: { children?: React.ReactNode }) {
+    return <Layout.Header style={{ backgroundColor: "#F5F5F5", maxWidth: 800, textAlign: "left", padding: 10, height: 'auto' }}>
         <Typography>
             <Typography.Title level={3}><EditOutlined style={{ marginRight: 10 }} />Posts Repository</Typography.Title>
             <Typography.Paragraph>
@@ -15,3 +15,5 @@ export function Header({ children }: { children?: React.ReactNode }) {
         {children}
     </Layout.Header>
 }
+
+export default PostHeader;

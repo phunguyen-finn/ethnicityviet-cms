@@ -1,5 +1,6 @@
 import { collection, doc, getDoc, getDocs, where, orderBy, query, setDoc, addDoc, startAfter, limit, Timestamp } from "firebase/firestore";
 import { Db } from "./firebase";
+import { Auth } from "./firebase";
 
 const MAX_POSTS = 5;
 
@@ -57,14 +58,15 @@ export const PostService = {
     },
     getPost: async (id: string): Promise<Post | null> => {
         const post = await getDoc(doc(Db, "posts", id));
-        if (!post.exists()) return null;
+        if (!post.exists()) throw new Error("Post not found");
         return { id: post.id, ...post.data(), createdAt: post.data().createdAt.toDate(), updatedAt: post.data().updatedAt.toDate() } as any;
     },
     updatePost: (id: string, data: any) => {
-        return setDoc(doc(Db, "posts", id), data);
+        return setDoc(doc(Db, "posts", id), { ...data, updatedAt: Timestamp.now() }, { merge: true });
     },
     createPost: (data: any) => {
-        return addDoc(collection(Db, "posts"), data);
+        if (!Auth.currentUser) throw new Error("You must be logged in to create a post");
+        return addDoc(collection(Db, "posts"), { ...data, createdAt: Timestamp.now(), updatedAt: Timestamp.now(), createdBy: Auth.currentUser?.email });
     },
 };
 

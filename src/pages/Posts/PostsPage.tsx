@@ -1,8 +1,9 @@
-import { Layout, Tabs } from 'antd';
+import { Button, Layout, Tabs } from 'antd';
 import { EditOutlined, GlobalOutlined, InboxOutlined } from '@ant-design/icons';
 import PostsList from 'pages/Posts/PostsList';
 import { POST_STATUS } from 'services/post.service';
-import { Header } from 'pages/Posts/Header';
+import PostHeader from 'pages/Posts/PostHeader';
+import { Link } from 'react-router-dom';
 
 const items = [
   {
@@ -25,15 +26,24 @@ const items = [
   }
 ];
 
+const layoutStyle = {
+  justifyContent: "center",
+  display: "flex",
+  alignItems: "center",
+}
+
 export function PostsPage() {
   const onChange = (key: string) => {
     console.log(key);
   };
 
-  return <Layout style={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-    <Header />
-    <Layout.Content style={{ width: 800 }} >
+  return <Layout style={layoutStyle}>
+    <PostHeader />
+    <Layout.Content style={{ display: 'flex', position: 'relative' }}>
       <Tabs onChange={onChange} type="card" items={items} />
+      <Link to='posts/create' style={{ position: 'absolute', right: 0 }}>
+        <Button type='primary'>Create</Button>
+      </Link>
     </Layout.Content>
   </Layout>;
 }
