@@ -3,6 +3,8 @@ import { useCallback, useMemo, useRef } from "react";
 import StorageService from "services/storage.service";
 
 const formats = [
+    "background",
+    "color",
     "header",
     "bold",
     "italic",
@@ -10,10 +12,12 @@ const formats = [
     "strike",
     "blockquote",
     "list",
-    "bullet",
+    "script",
     "indent",
     "link",
-    "image"
+    "image",
+    "video",
+    "align"
 ];
 
 export function RichTextEditor(props: any) {
@@ -41,7 +45,7 @@ export function RichTextEditor(props: any) {
         toolbar: {
             container: [
                 ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-                ['link', 'image', 'video', 'formula'],
+                ['link', 'image', 'video'],
 
                 [{ 'header': 1 }, { 'header': 2 }],
                 [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],

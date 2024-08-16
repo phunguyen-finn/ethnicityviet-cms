@@ -33,14 +33,10 @@ const layoutStyle = {
 }
 
 export function PostsPage() {
-  const onChange = (key: string) => {
-    console.log(key);
-  };
-
   return <Layout style={layoutStyle}>
     <PostHeader />
     <Layout.Content style={{ display: 'flex', position: 'relative' }}>
-      <Tabs onChange={onChange} type="card" items={items} />
+      <Tabs type="card" items={items} />
       <Link to='posts/create' style={{ position: 'absolute', right: 0 }}>
         <Button type='primary'>Create</Button>
       </Link>

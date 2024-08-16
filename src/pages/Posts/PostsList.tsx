@@ -49,7 +49,7 @@ const renderItem = (item: Post) => (
                 <Badge
                     color={"blue"}
                     count={item.language.toUpperCase()}
-                    offset={[20, 5]}
+                    offset={[20, 7]}
                 >
                     <Link to={`posts/${item.id}`}>
                         {item.title}
