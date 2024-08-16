@@ -1,31 +1,11 @@
 import { Layout, Form, Input, Breadcrumb, Typography, Button, Radio, Select, Upload } from "antd";
-import { UploadOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { useNavigate, useParams } from "react-router-dom";
+import RichTextEditor from "common/RichTextEditor";
 import PostService from "services/post.service";
+import { useEffect, useState } from "react";
 import 'react-quill/dist/quill.snow.css';
-import ReactQuill from "react-quill";
-
-const modules = {
-    toolbar: [
-        ['bold', 'italic', 'underline', 'strike', 'blockquote'],        // toggled buttons
-        ['link', 'image', 'video', 'formula'],
-
-        [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-        [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
-        [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
-        [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
-
-        [{ 'size': ['14px', '16px', '18px'] }],  // custom dropdown
-        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-        [{ 'font': [] }],
-        [{ 'align': [] }],
-
-        ['clean']                                         // remove formatting button
-    ],
-}
+import { Header } from "pages/Posts/Header";
 
 export function PostPage() {
     let { postId } = useParams();
@@ -53,27 +33,15 @@ export function PostPage() {
 
     return (
         <Layout style={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-            <Layout.Header style={{ backgroundColor: "#F5F5F5", width: 800, textAlign: "left", padding: 10, height: 'auto' }}>
-                <Typography>
-                    <Typography.Title level={3}><EditOutlined style={{ marginRight: 10 }} />Posts Repository</Typography.Title>
-                    <Typography.Paragraph>
-                        Manage your posts here. Write posts to share more about Ethnicity's projects, services, and updates.
-                    </Typography.Paragraph>
-                </Typography>
+            <Header>
                 <Breadcrumb
                     items={[
-                        {
-                            title: 'Home',
-                        },
-                        {
-                            title: <a onClick={() => navigate(-1)}>Posts</a>,
-                        },
-                        {
-                            title: 'Edit',
-                        }
+                        { title: 'Home' },
+                        { title: <a onClick={() => navigate(-1)}>Posts</a> },
+                        { title: 'Edit' }
                     ]}
                 />
-            </Layout.Header>
+            </Header>
             <Layout.Content>
                 <Form
                     form={form}
@@ -151,7 +119,7 @@ export function PostPage() {
                         name="content"
                         required
                     >
-                        <ReactQuill style={{ height: '300px' }} modules={modules} theme="snow" value={content} onChange={setContent} />
+                        <RichTextEditor style={{ height: '300px' }} theme="snow" value={content} onChange={setContent} />
                     </Form.Item>
                     <div style={{ display: 'flex' }}>
                         <Form.Item>

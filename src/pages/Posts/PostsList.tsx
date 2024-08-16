@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { Timestamp } from 'firebase/firestore';
 
 const scrollableDivStyle = {
-    height: 'calc(100vh - 140px - 60px)',
+    height: 'calc(100vh - 220px)',
     overflow: 'auto',
     padding: '0 16px',
     border: '1px solid rgba(140, 140, 140, 0.35)',
@@ -67,7 +67,7 @@ const mergeLists = (data: Post[], newData: Post[]) => {
     return merged;
 }
 
-export const ListPost = ({ status }: any) => {
+export const PostLists = ({ status }: any) => {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState<Post[]>([]);
     const [cursor, setCursor] = useState<Timestamp | undefined>(undefined);
@@ -110,5 +110,4 @@ export const ListPost = ({ status }: any) => {
     );
 };
 
-
-export default ListPost;
+export default PostLists;
