@@ -77,7 +77,7 @@ export const PostLists = ({ status }: any) => {
     const loadMoreData = () => {
         if (loading) return;
         setLoading(true);
-        PostService.getPosts(status, cursor)
+        PostService.getPostsByStatus(status, cursor)
             .then(([posts, cursor, hasMore]) => {
                 setData(mergeLists(data, posts));
                 setCursor(cursor);

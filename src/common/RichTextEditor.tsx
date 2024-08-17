@@ -31,7 +31,7 @@ export function RichTextEditor(props: any) {
         input.onchange = async () => {
             if (input !== null && input.files !== null) {
                 const file = input.files[0];
-                const url = await StorageService.upload(file, file.name.split('.').pop() as string);
+                const url = await StorageService.upload(file);
                 const quill = reactQuillRef.current;
                 if (quill) {
                     const range = quill.getEditorSelection();

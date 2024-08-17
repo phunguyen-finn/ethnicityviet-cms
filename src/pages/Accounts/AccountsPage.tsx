@@ -2,7 +2,7 @@ import { Layout, Form, Input, Button } from "antd";
 
 export function AccountsPage() {
     const onFinish = (values: any) => {
-        console.log('Success:', values);
+
     }
     return (
         <Layout>

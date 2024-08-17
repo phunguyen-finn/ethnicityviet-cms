@@ -27,7 +27,6 @@ export function PostPage() {
     }, [postId]);
 
     const handleSubmit = (post: any) => {
-        console.log("form value", post);
         if (postId) {
             message.loading('Updating post...', 0);
             PostService.updatePost(postId, post).then(() => {

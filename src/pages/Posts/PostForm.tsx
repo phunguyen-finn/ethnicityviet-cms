@@ -5,6 +5,7 @@ import { useState } from "react";
 import RichTextEditor from "common/RichTextEditor";
 import { validateMessages } from "constants/index";
 import StorageService from "services/storage.service";
+import { makeThumbnail } from "utils/thumbnail";
 
 const uploadButton = (
     <button
@@ -39,7 +40,8 @@ export function PostForm({ initialData, onSubmit }: { initialData?: Post, onSubm
     };
 
     const uploadThumbnail = async ({ file, onError, onProgress, onSuccess }: any) => {
-        StorageService.uploadThumbnailDetails(file, onProgress, onSuccess, onError);
+        const thumbnail = await makeThumbnail(file);
+        StorageService.upload(thumbnail, onProgress, onSuccess, onError);
     }
 
     const normFile = (e: any) => {

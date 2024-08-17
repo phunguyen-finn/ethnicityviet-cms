@@ -1,11 +1,13 @@
 import { Menu } from "antd";
-import { EditOutlined, SettingOutlined, ShopOutlined, TeamOutlined, GoogleOutlined, CodeOutlined, GithubOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
+import { EditOutlined, SettingOutlined, ShopOutlined, TeamOutlined, GoogleOutlined, CodeOutlined, GithubOutlined, FolderOpenOutlined, CopyOutlined } from "@ant-design/icons";
+import { useLocation, useNavigate } from "react-router-dom";
 import AuthService from "services/auth.service";
 
 export const MENU_ITEM_KEYS = {
     POSTS: 'posts',
     PATTERNS: 'patterns',
+    COLLECTIONS: 'collections',
+    SHOP: 'shop',
     ACCOUNTS: 'accounts',
     SETTINGS: 'settings',
     STATIC: 'static',
@@ -23,8 +25,18 @@ export const MENU_ITEMS: any = [
     },
     {
         key: MENU_ITEM_KEYS.PATTERNS,
-        icon: <ShopOutlined />,
+        icon: <CopyOutlined />,
         label: 'Patterns',
+    },
+    {
+        key: MENU_ITEM_KEYS.COLLECTIONS,
+        icon: <FolderOpenOutlined />,
+        label: 'Collections',
+    },
+    {
+        key: MENU_ITEM_KEYS.SHOP,
+        icon: <ShopOutlined />,
+        label: 'Shop',
     },
     {
         key: MENU_ITEM_KEYS.ACCOUNTS,
@@ -80,26 +92,12 @@ const logoStyle: React.CSSProperties = {
 
 export default function NavigationMenu() {
     const navigate = useNavigate();
+    const { pathname } = useLocation();
 
     const onClick = ({ key }: any) => {
         switch (key) {
             case MENU_ITEM_KEYS.POSTS:
                 navigate('/');
-                break;
-            case MENU_ITEM_KEYS.PATTERNS:
-                navigate('/patterns');
-                break;
-            case MENU_ITEM_KEYS.ACCOUNTS:
-                navigate('/accounts');
-                break;
-            case MENU_ITEM_KEYS.SETTINGS:
-                navigate('/settings');
-                break;
-            case MENU_ITEM_KEYS.STATIC:
-                navigate('/static');
-                break;
-            case MENU_ITEM_KEYS.SIGNOUT:
-                AuthService.logout();
                 break;
             case MENU_ITEM_KEYS.GOOGLE_ANALYTICS:
                 window.open('https://console.firebase.google.com/u/1/project/ethnicityvn/analytics/app/web:NzQ4ZGU4YTQtY2Y3Yy00OGNhLWI0OWEtYTU1N2QyNmY5MWMx/overview/reports~2Fdashboard%3Fr%3Dfirebase-overview&fpn%3D1019016524204');
@@ -108,9 +106,10 @@ export default function NavigationMenu() {
                 window.open('https://console.firebase.google.com/u/1/project/ethnicityvn/overview');
                 break;
             case MENU_ITEM_KEYS.GITHUB:
-                window.open('https://github.com');
+                window.open('https://github.com/nnphongphu/ethnicityviet-cms-client');
                 break;
             default:
+                navigate(key);
                 break;
         }
     }
@@ -126,7 +125,7 @@ export default function NavigationMenu() {
             mode="inline"
             items={MENU_ITEMS}
             onSelect={onClick}
-            defaultSelectedKeys={[MENU_ITEM_KEYS.POSTS]}
+            selectedKeys={[pathname.split('/')[1] || 'posts']}
         />
     </div>
 }

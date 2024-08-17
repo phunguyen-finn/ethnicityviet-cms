@@ -38,7 +38,7 @@ export interface Post {
 }
 
 export const PostService = {
-    getPosts: async (status: POST_STATUS, cursor: Timestamp | undefined): Promise<any[]> => {
+    getPostsByStatus: async (status: POST_STATUS, cursor: Timestamp | undefined): Promise<[Post[], Timestamp | undefined, boolean]> => {
         if (!cursor) cursor = Timestamp.now();
         const q = query(collection(Db, "posts"),
             where("status", "==", status),
@@ -53,7 +53,7 @@ export const PostService = {
             updatedAt: doc.data().updatedAt.toDate()
         })) as any;
         const hasMore = posts.length === MAX_POSTS;
-        if (posts.length == 0) return [[], null, false];
+        if (posts.length == 0) return [[], undefined, false];
         return [posts, posts[posts.length - 1].createdAt, hasMore];
     },
     getPost: async (id: string): Promise<Post | null> => {
