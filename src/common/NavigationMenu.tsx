@@ -80,7 +80,7 @@ export const MENU_ITEMS: any = [
 const logoStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
-    marginBottom: '0px'
+    margin: '10px 0px'
 }
 
 const textStyle: React.CSSProperties = {
