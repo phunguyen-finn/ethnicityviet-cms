@@ -102,7 +102,7 @@ export function CollectionForm({ initialData, onSubmit }: { initialData?: Collec
                 {uploadButton}
             </Upload>
         </Form.Item>
-        <Form.Item>
+        <Form.Item style={{ display: "flex", width: 800, justifyContent: "end" }}>
             <Button type='primary' htmlType='submit'>
                 Confirm
             </Button>

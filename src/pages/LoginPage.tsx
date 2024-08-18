@@ -1,3 +1,4 @@
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, Layout, Typography, App } from 'antd';
 import { validateMessages } from 'constants/index';
 import AuthContext from 'contexts/AuthContext';
@@ -68,28 +69,29 @@ export function LoginPage() {
                         validateMessages={validateMessages}
                     >
                         <Form.Item
-                            label='Username'
                             name='username'
                             labelAlign='left'
-                            rules={[{ required: true, type: 'email' }]}
+                            rules={[{ required: true, type: 'email', message: 'Please input an email!' }]}
                         >
-                            <Input />
+                            <Input prefix={<UserOutlined />} placeholder="Username" />
                         </Form.Item>
                         <Form.Item
-                            label='Password'
                             name='password'
                             labelAlign='left'
                             rules={[{ required: true }, { min: 8 }]}
                         >
-                            <Input.Password />
+                            <Input.Password prefix={<LockOutlined />} placeholder="Password" />
                         </Form.Item>
                         <div style={rowStyle}>
                             <Form.Item name='remember' valuePropName='checked'>
                                 <Checkbox>Remember me</Checkbox>
                             </Form.Item>
+                            <Typography.Link style={{ marginTop: '3px' }} href="/reset-password">
+                                Forgot password
+                            </Typography.Link>
                         </div>
-                        <Form.Item style={{ marginBottom: "0px" }}>
-                            <Button type='primary' htmlType='submit'>
+                        <Form.Item>
+                            <Button type='primary' htmlType='submit' style={{ marginBottom: "0px", width: '300px' }}>
                                 Log in
                             </Button>
                         </Form.Item>

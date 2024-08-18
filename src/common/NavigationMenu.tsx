@@ -1,7 +1,10 @@
 import { Menu } from "antd";
-import { EditOutlined, SettingOutlined, ShopOutlined, TeamOutlined, GoogleOutlined, CodeOutlined, GithubOutlined, FolderOpenOutlined, CopyOutlined } from "@ant-design/icons";
+import { EditOutlined, LogoutOutlined, ShopOutlined, TeamOutlined, GoogleOutlined, CodeOutlined, GithubOutlined, FolderOpenOutlined, CopyOutlined } from "@ant-design/icons";
 import { useLocation, useNavigate } from "react-router-dom";
 import AuthService from "services/auth.service";
+import { useContext } from "react";
+import AuthContext from "contexts/AuthContext";
+import Typography from "antd/es/typography/Typography";
 
 export const MENU_ITEM_KEYS = {
     POSTS: 'posts',
@@ -44,19 +47,9 @@ export const MENU_ITEMS: any = [
         label: 'Accounts',
     },
     {
-        key: MENU_ITEM_KEYS.SETTINGS,
-        icon: <SettingOutlined />,
-        label: 'Settings',
-        children: [
-            {
-                key: MENU_ITEM_KEYS.STATIC,
-                label: 'Static',
-            },
-            {
-                key: MENU_ITEM_KEYS.SIGNOUT,
-                label: 'Sign Out'
-            }
-        ]
+        key: MENU_ITEM_KEYS.SIGNOUT,
+        label: 'Sign Out',
+        icon: <LogoutOutlined />,
     },
     {
         type: "divider",
@@ -90,9 +83,23 @@ const logoStyle: React.CSSProperties = {
     marginBottom: '0px'
 }
 
+const textStyle: React.CSSProperties = {
+    textAlign: 'left',
+    padding: '0px 30px',
+    marginBottom: 10,
+    maxHeight: 54,
+    textOverflow: "ellipsis",
+    msTextOverflow: "ellipsis",
+    display: 'inline-block',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+}
+
+
 export default function NavigationMenu() {
     const navigate = useNavigate();
     const { pathname } = useLocation();
+    const authContext = useContext(AuthContext);
 
     const onClick = ({ key }: any) => {
         switch (key) {
@@ -108,6 +115,9 @@ export default function NavigationMenu() {
             case MENU_ITEM_KEYS.GITHUB:
                 window.open('https://github.com/nnphongphu/ethnicityviet-cms-client');
                 break;
+            case MENU_ITEM_KEYS.SIGNOUT:
+                AuthService.logout();
+                break;
             default:
                 navigate(key);
                 break;
@@ -116,10 +126,14 @@ export default function NavigationMenu() {
 
     return <div style={{ display: 'flex', flexDirection: "column" }}>
         <img src='/logo.svg' alt='logo' style={logoStyle} width={250} height={60} />
+        <Typography style={textStyle}>
+            🚀 Signed in as <br />
+            <b>{authContext.user?.email}</b>
+        </Typography>
         <Menu
             style={{
                 width: 256,
-                height: "calc(100vh - 60px)",
+                height: "calc(100vh - 60px - 54px)",
                 textAlign: "left",
             }}
             mode="inline"

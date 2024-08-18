@@ -1,5 +1,6 @@
-import { signInWithEmailAndPassword, signOut, sendPasswordResetEmail, User, setPersistence, browserSessionPersistence, browserLocalPersistence } from "firebase/auth";
-import { Auth } from "services/firebase";
+import { signInWithEmailAndPassword, signOut, sendPasswordResetEmail, User, setPersistence, browserSessionPersistence, browserLocalPersistence, createUserWithEmailAndPassword } from "firebase/auth";
+import { Auth, TemporaryAuth } from "services/firebase";
+import UserService from "./user.service";
 
 export const AuthService = {
     login: async function (email: string, password: string, remember: boolean) {
@@ -22,6 +23,11 @@ export const AuthService = {
             Auth,
             persist ? browserLocalPersistence : browserSessionPersistence
         );
+    },
+    register: async function (email: string, password: string) {
+        const userCredentials = await createUserWithEmailAndPassword(TemporaryAuth, email, password);
+        await signOut(TemporaryAuth);
+        await UserService.createUser(userCredentials.user.email as string);
     }
 }
 

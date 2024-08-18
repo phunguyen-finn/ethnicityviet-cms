@@ -118,7 +118,7 @@ export function ProductForm({ initialData, onSubmit }: { initialData?: Product, 
             <Input placeholder="The url to third-party product link" />
         </Form.Item>
 
-        <Form.Item>
+        <Form.Item style={{ display: "flex", width: 800, justifyContent: "end" }}>
             <Button type='primary' htmlType='submit'>
                 Confirm
             </Button>

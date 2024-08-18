@@ -63,7 +63,7 @@ export function CollectionPage() {
             <Layout>
                 <Breadcrumb style={{ marginBottom: 10 }}>
                     <Breadcrumb.Item>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item><Link to=".." relative="path">Collection</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to=".." relative="path">Collections</Link></Breadcrumb.Item>
                     <Breadcrumb.Item>{collectionId === 'create' ? 'Create' : collection.name}</Breadcrumb.Item>
                 </Breadcrumb>
                 <CollectionForm initialData={collection} onSubmit={collectionId === 'create' ? handleCreate : handleUpdate} />

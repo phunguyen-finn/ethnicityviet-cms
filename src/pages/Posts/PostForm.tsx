@@ -129,7 +129,7 @@ export function PostForm({ initialData, onSubmit }: { initialData?: Post, onSubm
                 <Radio.Button value="archived">Archived</Radio.Button>
             </Radio.Group>
         </Form.Item>
-        <Form.Item>
+        <Form.Item style={{ display: "flex", width: 800, justifyContent: "end" }}>
             <Button type='primary' htmlType='submit'>
                 Confirm
             </Button>

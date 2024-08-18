@@ -72,7 +72,7 @@ export function PatternPage() {
             <Layout>
                 <Breadcrumb style={{ marginBottom: 10 }}>
                     <Breadcrumb.Item>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item><Link to=".." relative="path">Pattern</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to=".." relative="path">Patterns</Link></Breadcrumb.Item>
                     <Breadcrumb.Item>{patternId === 'create' ? 'Create' : pattern!.name}</Breadcrumb.Item>
                 </Breadcrumb>
                 <PatternForm

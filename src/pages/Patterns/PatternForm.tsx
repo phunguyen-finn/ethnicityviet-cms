@@ -169,7 +169,7 @@ export function PatternForm({ initialData, onSubmit, collections }: { initialDat
                 }
             </Select>
         </Form.Item>
-        <Form.Item>
+        <Form.Item style={{ display: "flex", width: 800, justifyContent: "end" }}>
             <Button type='primary' htmlType='submit'>
                 Confirm
             </Button>

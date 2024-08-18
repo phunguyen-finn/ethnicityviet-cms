@@ -1,48 +1,25 @@
-import { Layout, Form, Input, Button } from "antd";
+import { Layout } from 'antd';
+import { Outlet } from 'react-router-dom';
+import { TeamOutlined } from '@ant-design/icons';
+import Header from 'common/Header';
+
+const layoutStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+}
+
+const description = (
+    <>
+        You can create new account here, but cannot delete existing accounts for security reasons.
+        Only create accounts when necessary and use strong password. This section is dangerous, please dont mess around.
+    </>
+)
 
 export function AccountsPage() {
-    const onFinish = (values: any) => {
-
-    }
-    return (
-        <Layout>
-            <Form
-                name='login-form'
-                initialValues={{ remember: false }}
-                onFinish={onFinish}
-                colon={false}
-            >
-                <Form.Item
-                    label='Username'
-                    name='username'
-                    labelAlign='left'
-                    rules={[{
-                        required: true,
-                        message: 'Please input your username!',
-                        type: 'email'
-                    }]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label='Password'
-                    name='password'
-                    labelAlign='left'
-                    rules={[{ required: true, message: 'Please input your password!' },
-                    { min: 8, message: 'Password must be at least 8 characters long' }
-                    ]}
-                >
-                    <Input.Password />
-                </Form.Item>
-
-                <Form.Item style={{ marginBottom: "0px" }}>
-                    <Button type='primary' htmlType='submit'>
-                        Log in
-                    </Button>
-                </Form.Item>
-            </Form>
-        </Layout>
-    );
+    return <Layout style={layoutStyle}>
+        <Header icon={<TeamOutlined />} title={'Accounts'} description={description} />
+        <Outlet />
+    </Layout >;
 }
 
 export default AccountsPage;

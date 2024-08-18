@@ -17,12 +17,16 @@ import PostsLists from 'pages/Posts/PostsLists';
 import CollectionsPage from 'pages/Collections/CollectionsPage';
 import CollectionsList from 'pages/Collections/CollectionsList';
 import CollectionPage from 'pages/Collections/CollectionPage';
+import ResetPasswordPage from 'pages/ResetPassword';
+import AccountsList from 'pages/Accounts/AccountsList';
+import AccountPage from 'pages/Accounts/AccountPage';
 
 function AppRoutes() {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path='/login' element={<LoginPage />} />
+                <Route path='/reset-password' element={<ResetPasswordPage />} />
                 <Route path='/' element={<MainApp />}>
                     <Route path='/' element={<PostsPage />} >
                         <Route path='/' element={<PostsLists />} />
@@ -40,7 +44,10 @@ function AppRoutes() {
                         <Route path='/products' element={<ProductsList />} />
                         <Route path='/products/:productId' element={<ProductPage />} />
                     </Route>
-                    <Route path='/accounts' element={<AccountsPage />} />
+                    <Route path='/accounts' element={<AccountsPage />} >
+                        <Route path='/accounts' element={<AccountsList />} />
+                        <Route path='/accounts/create' element={<AccountPage />} />
+                    </Route>
                     <Route path='static' element={<StaticPage />} />
                     <Route path='*' element={<ErrorPage />} />
                 </Route>
