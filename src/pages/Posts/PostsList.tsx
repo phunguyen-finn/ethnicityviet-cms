@@ -2,7 +2,7 @@ import { Divider, List, Skeleton, Space, Badge } from 'antd';
 import { CalendarOutlined, UserOutlined } from '@ant-design/icons';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import React, { useEffect, useState } from 'react';
-import PostService, { Post } from 'services/post.service';
+import { Post } from 'services/post.service';
 import { Link } from 'react-router-dom';
 import { Timestamp } from 'firebase/firestore';
 
@@ -51,7 +51,7 @@ const renderItem = (item: Post) => (
                     count={item.language.toUpperCase()}
                     offset={[20, 7]}
                 >
-                    <Link to={`posts/${item.id}`}>
+                    <Link to={`/posts/${item.id}`}>
                         {item.title}
                     </Link>
                 </Badge>}
@@ -68,7 +68,11 @@ const mergeLists = (data: Post[], newData: Post[]) => {
     return merged;
 }
 
-export const PostLists = ({ status }: any) => {
+interface postsListProps {
+    loadData: (cursor: Timestamp | undefined) => Promise<[Post[], Timestamp | undefined, boolean]>;
+}
+
+export const PostsList = ({ loadData }: postsListProps) => {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState<Post[]>([]);
     const [cursor, setCursor] = useState<Timestamp | undefined>(undefined);
@@ -77,7 +81,7 @@ export const PostLists = ({ status }: any) => {
     const loadMoreData = () => {
         if (loading) return;
         setLoading(true);
-        PostService.getPostsByStatus(status, cursor)
+        loadData(cursor)
             .then(([posts, cursor, hasMore]) => {
                 setData(mergeLists(data, posts));
                 setCursor(cursor);
@@ -111,4 +115,4 @@ export const PostLists = ({ status }: any) => {
     );
 };
 
-export default PostLists;
+export default PostsList;

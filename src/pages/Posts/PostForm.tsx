@@ -1,4 +1,4 @@
-import { Post } from "services/post.service";
+import { Post, POST_CATEGORY } from "services/post.service";
 import { Form, Input, Radio, Select, Upload, Button, Image } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useState } from "react";
@@ -45,7 +45,7 @@ export function PostForm({ initialData, onSubmit }: { initialData?: Post, onSubm
     }
 
     const normFile = (e: any) => {
-        if (e.file.status == 'done')
+        if (e.file.status === 'done')
             return e.file.response;
         return undefined;
     }
@@ -56,7 +56,7 @@ export function PostForm({ initialData, onSubmit }: { initialData?: Post, onSubm
         colon={false}
         labelCol={{ span: 5 }}
         labelAlign='left'
-        style={{ maxWidth: 800 }}
+        style={{ width: 800 }}
         onFinish={onSubmit}
         initialValues={initialData}
     >
@@ -82,11 +82,11 @@ export function PostForm({ initialData, onSubmit }: { initialData?: Post, onSubm
         </Form.Item>
         <Form.Item label="Category" name="category" rules={[{ required: true }]} >
             <Select style={{ width: 130 }} placeholder="Category">
-                <Select.Option value="media">Media</Select.Option>
-                <Select.Option value="discover">Discover</Select.Option>
-                <Select.Option value="update">Update</Select.Option>
-                <Select.Option value="project">Project</Select.Option>
-                <Select.Option value="service">Service</Select.Option>
+                <Select.Option value={POST_CATEGORY.MEDIA}>Media</Select.Option>
+                <Select.Option value={POST_CATEGORY.DISCOVER}>Discover</Select.Option>
+                <Select.Option value={POST_CATEGORY.UPDATE}>Update</Select.Option>
+                <Select.Option value={POST_CATEGORY.PROJECT}>Project</Select.Option>
+                <Select.Option value={POST_CATEGORY.SERVICE}>Service</Select.Option>
             </Select>
         </Form.Item>
         <Form.Item

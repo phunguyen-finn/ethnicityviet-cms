@@ -8,20 +8,34 @@ import PatternsPage from 'pages/Patterns/PatternsPage';
 import StaticPage from 'pages/Static/StaticPage';
 import PostPage from 'pages/Posts/PostPage';
 import ErrorPage from 'pages/ErrorPage';
-import PostCreatePage from 'pages/Posts/PostCreatPage';
+import PatternPage from 'pages/Patterns/PatternPage';
+import ProductsPage from 'pages/Products/ProductsPage';
+import ProductPage from 'pages/Products/ProductPage';
+import ProductsList from 'pages/Products/ProductsList';
+import PatternsLists from 'pages/Patterns/PatternsLists';
+import PostsLists from 'pages/Posts/PostsLists';
 
 function AppRoutes() {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path='/login' element={<LoginPage />} />
-                <Route path='/' element={<MainApp />} errorElement={<ErrorPage />}>
-                    <Route path='/' element={<PostsPage />} />
-                    <Route path='posts/create' element={<PostCreatePage />} />
-                    <Route path='posts/:postId' element={<PostPage />} />
-                    <Route path='accounts' element={<AccountsPage />} />
-                    <Route path='patterns' element={<PatternsPage />} />
+                <Route path='/' element={<MainApp />}>
+                    <Route path='/' element={<PostsPage />} >
+                        <Route path='/' element={<PostsLists />} />
+                        <Route path='/posts/:postId' element={<PostPage />} />
+                    </Route>
+                    <Route path='/accounts' element={<AccountsPage />} />
+                    <Route path='/patterns' element={<PatternsPage />} >
+                        <Route path='/patterns' element={<PatternsLists />} />
+                        <Route path='/patterns/:patternId' element={<PatternPage />} />
+                    </Route>
+                    <Route path='/products' element={<ProductsPage />}>
+                        <Route path='/products' element={<ProductsList />} />
+                        <Route path='/products/:productId' element={<ProductPage />} />
+                    </Route>
                     <Route path='static' element={<StaticPage />} />
+                    <Route path='*' element={<ErrorPage />} />
                 </Route>
             </Routes>
         </BrowserRouter>

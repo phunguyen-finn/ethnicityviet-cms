@@ -7,7 +7,7 @@ export const MENU_ITEM_KEYS = {
     POSTS: 'posts',
     PATTERNS: 'patterns',
     COLLECTIONS: 'collections',
-    SHOP: 'shop',
+    PRODUCTS: 'products',
     ACCOUNTS: 'accounts',
     SETTINGS: 'settings',
     STATIC: 'static',
@@ -34,9 +34,9 @@ export const MENU_ITEMS: any = [
         label: 'Collections',
     },
     {
-        key: MENU_ITEM_KEYS.SHOP,
+        key: MENU_ITEM_KEYS.PRODUCTS,
         icon: <ShopOutlined />,
-        label: 'Shop',
+        label: 'Products',
     },
     {
         key: MENU_ITEM_KEYS.ACCOUNTS,

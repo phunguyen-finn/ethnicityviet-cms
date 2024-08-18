@@ -1,6 +1,7 @@
 import ReactQuill from "react-quill";
 import { useCallback, useMemo, useRef } from "react";
 import StorageService from "services/storage.service";
+import 'react-quill/dist/quill.snow.css';
 
 const formats = [
     "background",

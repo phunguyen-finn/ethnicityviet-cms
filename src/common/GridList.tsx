@@ -2,10 +2,8 @@ import { App, Divider, List, Skeleton } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useEffect, useState } from 'react';
 import { Timestamp } from 'firebase/firestore';
-import PatternService, { PATTERN_CATEGORY } from 'services/pattern.service';
-import { Pattern } from 'services/pattern.service';
-import { PatternItem } from './PatternItem';
 import { useNavigate } from 'react-router-dom';
+import CardItem from './CardItem';
 
 const scrollableDivStyle = {
     height: 'calc(100vh - 220px)',
@@ -15,7 +13,7 @@ const scrollableDivStyle = {
     border: '1px solid rgba(140, 140, 140, 0.35)',
 };
 
-const mergeLists = (data: Pattern[], newData: Pattern[]) => {
+const mergeLists = (data: Item[], newData: Item[]) => {
     data = [...data];
     newData = [...newData];
     const ids = new Set(data.map((item) => item.id));
@@ -23,9 +21,21 @@ const mergeLists = (data: Pattern[], newData: Pattern[]) => {
     return merged;
 }
 
-export function PatternsList({ category }: { category: PATTERN_CATEGORY }) {
+interface Item {
+    id: string;
+    name: string;
+    description: string;
+    thumbnailUrl: string;
+}
+
+interface GridListProps {
+    loadData: (cursor: Timestamp | undefined) => Promise<[Item[], Timestamp | undefined, boolean]>;
+    handleDelete: (id: string) => Promise<void>;
+}
+
+export function GridList({ loadData, handleDelete }: GridListProps) {
     const [loading, setLoading] = useState(false);
-    const [data, setData] = useState<Pattern[]>([]);
+    const [data, setData] = useState<Item[]>([]);
     const [cursor, setCursor] = useState<Timestamp | undefined>(undefined);
     const [hasMore, setHasMore] = useState(true);
     const navigate = useNavigate();
@@ -34,8 +44,8 @@ export function PatternsList({ category }: { category: PATTERN_CATEGORY }) {
     const loadMoreData = () => {
         if (loading || !hasMore) return;
         setLoading(true);
-        PatternService.getPatternsByCategory(category, cursor).then(([patterns, nextCursor, hasMore]) => {
-            setData(mergeLists(data, patterns));
+        loadData(cursor).then(([items, nextCursor, hasMore]) => {
+            setData(mergeLists(data, items));
             setCursor(nextCursor);
             setHasMore(hasMore);
             setLoading(false);
@@ -50,17 +60,17 @@ export function PatternsList({ category }: { category: PATTERN_CATEGORY }) {
         navigate(`${id}`);
     }
 
-    const handleDelete = (id: string) => {
-        PatternService.deletePattern(id).then(() => {
-            message.success("Pattern deleted successfully", 5);
-            setData(data.filter((item) => item.id !== id));
+    const handleDeleteWrapper = (id: string) => {
+        handleDelete(id).then(() => {
+            message.success("Resource deleted successfully", 5);
+            setData([...data.filter((item) => item.id !== id)]);
         }).catch((error) => {
             message.error(error.message, 5);
         })
     }
 
-    const renderItem = (item: Pattern) => (
-        <PatternItem key={item.id} item={item} handleDelete={handleDelete} handleEdit={handleEdit} />
+    const renderItem = (item: Item) => (
+        <CardItem key={item.id} item={item} handleDelete={() => handleDeleteWrapper(item.id)} handleEdit={() => handleEdit(item.id)} />
     );
 
     return (
@@ -83,4 +93,4 @@ export function PatternsList({ category }: { category: PATTERN_CATEGORY }) {
     );
 };
 
-export default PatternsList;
+export default GridList;

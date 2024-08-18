@@ -46,19 +46,19 @@ export const PatternService = {
             updatedAt: doc.data().updatedAt.toDate()
         })) as any;
         const hasMore = patterns.length === MAX_PATTERNS;
-        if (patterns.length == 0) return [[], undefined, false];
+        if (patterns.length === 0) return [[], undefined, false];
         return [patterns, patterns[patterns.length - 1].createdAt, hasMore];
     },
     getPattern: async (id: string): Promise<Pattern | null> => {
         const pattern = await getDoc(doc(Db, "patterns", id));
-        if (!pattern.exists()) throw new Error("Pattern not found");
+        if (!pattern.exists()) return Promise.reject(new Error("Resource not found"));
         return { id: pattern.id, ...pattern.data(), createdAt: pattern.data().createdAt.toDate(), updatedAt: pattern.data().updatedAt.toDate() } as any;
     },
     updatePattern: (id: string, data: Partial<Pattern>) => {
         return setDoc(doc(Db, "patterns", id), { ...data, updatedAt: Timestamp.now() }, { merge: true });
     },
     createPattern: (data: Partial<Pattern>) => {
-        if (!Auth.currentUser) throw new Error("You must be logged in to create a pattern");
+        if (!Auth.currentUser) return Promise.reject(new Error("Must be logged in to create resource"));
         return addDoc(collection(Db, "patterns"), { ...data, createdAt: Timestamp.now(), updatedAt: Timestamp.now(), createdBy: Auth.currentUser?.email });
     },
     deletePattern: (id: string) => {

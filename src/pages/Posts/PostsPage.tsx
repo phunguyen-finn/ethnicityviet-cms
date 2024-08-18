@@ -1,46 +1,26 @@
-import { Button, Layout, Tabs } from 'antd';
-import { EditOutlined, GlobalOutlined, InboxOutlined } from '@ant-design/icons';
-import PostsList from 'pages/Posts/PostsList';
-import { POST_STATUS } from 'services/post.service';
-import PostHeader from 'pages/Posts/PostHeader';
-import { Link } from 'react-router-dom';
-
-const items = [
-  {
-    key: '1',
-    label: `Published`,
-    children: <PostsList status={POST_STATUS.PUBLISHED} />,
-    icon: <GlobalOutlined />
-  },
-  {
-    key: '2',
-    label: 'Draft',
-    children: <PostsList status={POST_STATUS.DRAFT} />,
-    icon: <EditOutlined />
-  },
-  {
-    key: '3',
-    label: 'Archived',
-    children: <PostsList status={POST_STATUS.ARCHIVED} />,
-    icon: <InboxOutlined />
-  }
-];
+import { Layout } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
+import { Outlet } from 'react-router-dom';
+import Header from 'common/Header';
 
 const layoutStyle = {
-  justifyContent: "center",
   display: "flex",
   alignItems: "center",
 }
 
+const description = (
+  <>
+    Manage your posts here. Write posts to share more about
+    Ethnicity's projects, services, and updates.
+    Note that only published posts are visible to the main site, you
+    can always change the status of the post to draft or archived.
+  </>
+)
+
 export function PostsPage() {
   return <Layout style={layoutStyle}>
-    <PostHeader />
-    <Layout.Content style={{ display: 'flex', position: 'relative' }}>
-      <Tabs type="card" items={items} />
-      <Link to='posts/create' style={{ position: 'absolute', right: 0 }}>
-        <Button type='primary'>Create</Button>
-      </Link>
-    </Layout.Content>
+    <Header icon={<EditOutlined />} title="Posts Repository" description={description} />
+    <Outlet />
   </Layout>;
 }
 

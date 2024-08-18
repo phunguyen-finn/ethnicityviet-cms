@@ -1,9 +1,7 @@
 import { Layout, Breadcrumb, Typography, App } from "antd";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import PostService from "services/post.service";
 import { useEffect, useState } from "react";
-import 'react-quill/dist/quill.snow.css';
-import PostHeader from "pages/Posts/PostHeader";
 import PostForm from "./PostForm";
 
 const layoutStyle = {
@@ -21,54 +19,55 @@ export function PostPage() {
     const { message } = App.useApp();
 
     useEffect(() => {
-        if (postId) {
-            PostService.getPost(postId).then((post) => setPost(post)).finally(() => setIsLoading(false));
-        }
+        if (postId && postId !== 'create') {
+            PostService.getPost(postId).then((post) => setPost(post)).catch((_) => { }).finally(() => setIsLoading(false));
+        } else if (postId === 'create')
+            setIsLoading(false);
     }, [postId]);
 
-    const handleSubmit = (post: any) => {
+    const handleUpdate = (post: any) => {
         if (postId) {
-            message.loading('Updating post...', 0);
+            message.loading('Updating resource...', 0);
             PostService.updatePost(postId, post).then(() => {
                 message.destroy();
-                message.success('Update post successfully', 5);
-                navigate(-1);
+                message.success('Update resource successfully', 5);
+                navigate("..");
             }).catch((error) => {
                 message.destroy();
-                message.error('Update post failed: ' + error.message, 5);
+                message.error('Update resource failed: ' + error.message, 5);
             });
         }
+    }
+
+    const handleCreate = (post: any) => {
+        message.loading('Create resource...', 0);
+        PostService.createPost(post).then(() => {
+            message.destroy();
+            message.success('Create resource successfully', 5);
+            navigate("..");
+        }).catch((error) => {
+            message.destroy();
+            message.error('Create resource failed: ' + error.message, 5);
+        });
     }
 
     if (isLoading)
         return null;
 
-    if (!post) {
-        return <Typography.Text type='danger'>Post not found</Typography.Text>
+    if (postId !== 'create' && !post) {
+        return <Navigate to='/' />;
     }
 
     return (
         <Layout style={layoutStyle}>
-            <PostHeader>
-                <Breadcrumb
-                    items={[
-                        { title: 'Home' },
-                        { title: <a onClick={() => navigate(-1)}>Posts</a> },
-                        { title: 'Edit' }
-                    ]}
-                />
-            </PostHeader>
-            {
-                !post && <Typography.Text type='danger'>Post not found</Typography.Text>
-            }
-            {
-                post && <Layout.Content>
-                    <PostForm initialData={post} onSubmit={handleSubmit} />
-                    <Layout.Footer style={{ textAlign: 'center' }}>
-                        <Typography.Text type='secondary'>Ethnicity Vietnam © 2024</Typography.Text>
-                    </Layout.Footer>
-                </Layout.Content>
-            }
+            <Layout>
+                <Breadcrumb style={{ marginBottom: 10 }}>
+                    <Breadcrumb.Item>Home</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to="/">Products</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item>{postId === 'create' ? 'Create' : post.title}</Breadcrumb.Item>
+                </Breadcrumb>
+                <PostForm initialData={post} onSubmit={postId === 'create' ? handleCreate : handleUpdate} />
+            </Layout>
         </Layout >
     );
 }

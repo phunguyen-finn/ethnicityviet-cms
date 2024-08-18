@@ -53,19 +53,19 @@ export const PostService = {
             updatedAt: doc.data().updatedAt.toDate()
         })) as any;
         const hasMore = posts.length === MAX_POSTS;
-        if (posts.length == 0) return [[], undefined, false];
+        if (posts.length === 0) return [[], undefined, false];
         return [posts, posts[posts.length - 1].createdAt, hasMore];
     },
     getPost: async (id: string): Promise<Post | null> => {
         const post = await getDoc(doc(Db, "posts", id));
-        if (!post.exists()) throw new Error("Post not found");
+        if (!post.exists()) return Promise.reject(new Error("Resource not found"));
         return { id: post.id, ...post.data(), createdAt: post.data().createdAt.toDate(), updatedAt: post.data().updatedAt.toDate() } as any;
     },
     updatePost: (id: string, data: any) => {
         return setDoc(doc(Db, "posts", id), { ...data, updatedAt: Timestamp.now() }, { merge: true });
     },
     createPost: (data: any) => {
-        if (!Auth.currentUser) throw new Error("You must be logged in to create a post");
+        if (!Auth.currentUser) return Promise.reject(new Error("Must be logged in to create resource"));
         return addDoc(collection(Db, "posts"), { ...data, createdAt: Timestamp.now(), updatedAt: Timestamp.now(), createdBy: Auth.currentUser?.email });
     },
 };
