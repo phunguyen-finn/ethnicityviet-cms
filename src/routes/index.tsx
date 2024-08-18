@@ -14,6 +14,9 @@ import ProductPage from 'pages/Products/ProductPage';
 import ProductsList from 'pages/Products/ProductsList';
 import PatternsLists from 'pages/Patterns/PatternsLists';
 import PostsLists from 'pages/Posts/PostsLists';
+import CollectionsPage from 'pages/Collections/CollectionsPage';
+import CollectionsList from 'pages/Collections/CollectionsList';
+import CollectionPage from 'pages/Collections/CollectionPage';
 
 function AppRoutes() {
     return (
@@ -25,15 +28,19 @@ function AppRoutes() {
                         <Route path='/' element={<PostsLists />} />
                         <Route path='/posts/:postId' element={<PostPage />} />
                     </Route>
-                    <Route path='/accounts' element={<AccountsPage />} />
                     <Route path='/patterns' element={<PatternsPage />} >
                         <Route path='/patterns' element={<PatternsLists />} />
                         <Route path='/patterns/:patternId' element={<PatternPage />} />
+                    </Route>
+                    <Route path='/collections' element={<CollectionsPage />}>
+                        <Route path='/collections' element={<CollectionsList />} />
+                        <Route path='/collections/:collectionId' element={<CollectionPage />} />
                     </Route>
                     <Route path='/products' element={<ProductsPage />}>
                         <Route path='/products' element={<ProductsList />} />
                         <Route path='/products/:productId' element={<ProductPage />} />
                     </Route>
+                    <Route path='/accounts' element={<AccountsPage />} />
                     <Route path='static' element={<StaticPage />} />
                     <Route path='*' element={<ErrorPage />} />
                 </Route>

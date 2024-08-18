@@ -5,7 +5,8 @@ import Header from 'common/Header';
 
 const description = (
     <>
-        Showcase the patterns library. <br /> Add item to store. Create collections.
+        Showcase the patterns library. You can create, update, delete and view patterns here.
+        Please aware that patterns shown here can be downloaded free of charge in the main site.
     </>
 );
 

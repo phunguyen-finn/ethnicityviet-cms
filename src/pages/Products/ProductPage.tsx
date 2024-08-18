@@ -55,7 +55,7 @@ export function ProductPage() {
         return null;
 
     if (productId !== 'create' && !product) {
-        return <Navigate to='/' />;
+        return <Navigate to='/products' />;
     }
 
     return (

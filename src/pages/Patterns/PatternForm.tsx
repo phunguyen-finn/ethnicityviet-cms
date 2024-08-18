@@ -5,6 +5,7 @@ import { validateMessages } from "constants/index";
 import StorageService from "services/storage.service";
 import { makeThumbnail } from "utils/thumbnail";
 import { Pattern, PATTERN_CATEGORY } from "services/pattern.service";
+import { Collection } from "services/collection.service";
 
 const uploadButton = (
     <button
@@ -26,7 +27,7 @@ const uploadButton = (
     </button>
 );
 
-export function PatternForm({ initialData, onSubmit }: { initialData?: Pattern, onSubmit: any }) {
+export function PatternForm({ initialData, onSubmit, collections }: { initialData?: Pattern, onSubmit: any, collections: Collection[] }) {
     const [form] = Form.useForm();
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
@@ -149,6 +150,24 @@ export function PatternForm({ initialData, onSubmit }: { initialData?: Pattern, 
             >
                 <Button icon={<UploadOutlined />}>Click to Upload</Button>
             </Upload>
+        </Form.Item>
+        <Form.Item
+            name="collectionId"
+            label="Collection"
+            required
+        >
+            <Select style={{ width: 130 }} placeholder="Collection" defaultValue={null}>
+                <Select.Option value={null}>None</Select.Option>
+                {
+                    collections.map(
+                        (collection) => (
+                            <Select.Option key={collection.id} value={collection.id}>
+                                {collection.name}
+                            </Select.Option>
+                        )
+                    )
+                }
+            </Select>
         </Form.Item>
         <Form.Item>
             <Button type='primary' htmlType='submit'>

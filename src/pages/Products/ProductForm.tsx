@@ -71,14 +71,14 @@ export function ProductForm({ initialData, onSubmit }: { initialData?: Product, 
             name='name'
             rules={[{ required: true }, { max: 100 }, { min: 5 }]}
         >
-            <Input placeholder="Let us know the name of the pattern" />
+            <Input placeholder="Let us know the name of the product" />
         </Form.Item>
         <Form.Item
             label='Description'
             name='description'
             rules={[{ required: true }, { min: 50 }]}
         >
-            <Input.TextArea showCount maxLength={800} style={{ height: 350 }} placeholder="Describe your pattern here" />
+            <Input.TextArea showCount maxLength={800} style={{ height: 350 }} placeholder="Describe your product here" />
         </Form.Item>
         <Form.Item
             name="thumbnailUrl"
