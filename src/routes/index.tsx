@@ -3,7 +3,6 @@ import LoginPage from 'pages/LoginPage';
 import MainApp from 'pages/MainApp';
 import 'App.css';
 import PostsPage from 'pages/Posts/PostsPage';
-import AccountsPage from 'pages/Accounts/AccountsPage';
 import PatternsPage from 'pages/Patterns/PatternsPage';
 import StaticPage from 'pages/Static/StaticPage';
 import PostPage from 'pages/Posts/PostPage';
@@ -18,7 +17,6 @@ import CollectionsPage from 'pages/Collections/CollectionsPage';
 import CollectionsList from 'pages/Collections/CollectionsList';
 import CollectionPage from 'pages/Collections/CollectionPage';
 import ResetPasswordPage from 'pages/ResetPassword';
-import AccountsList from 'pages/Accounts/AccountsList';
 
 function AppRoutes() {
     return (
@@ -42,9 +40,6 @@ function AppRoutes() {
                     <Route path='/products' element={<ProductsPage />}>
                         <Route path='/products' element={<ProductsList />} />
                         <Route path='/products/:productId' element={<ProductPage />} />
-                    </Route>
-                    <Route path='/accounts' element={<AccountsPage />} >
-                        <Route path='/accounts' element={<AccountsList />} />
                     </Route>
                     <Route path='static' element={<StaticPage />} />
                     <Route path='*' element={<ErrorPage />} />

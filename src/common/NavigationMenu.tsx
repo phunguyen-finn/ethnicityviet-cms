@@ -1,5 +1,5 @@
 import { Menu } from "antd";
-import { EditOutlined, LogoutOutlined, ShopOutlined, TeamOutlined, GoogleOutlined, CodeOutlined, GithubOutlined, FolderOpenOutlined, CopyOutlined } from "@ant-design/icons";
+import { EditOutlined, LogoutOutlined, ShopOutlined, GoogleOutlined, CodeOutlined, GithubOutlined, FolderOpenOutlined, CopyOutlined } from "@ant-design/icons";
 import { useLocation, useNavigate } from "react-router-dom";
 import AuthService from "services/auth.service";
 import { useContext } from "react";
@@ -11,7 +11,6 @@ export const MENU_ITEM_KEYS = {
     PATTERNS: 'patterns',
     COLLECTIONS: 'collections',
     PRODUCTS: 'products',
-    ACCOUNTS: 'accounts',
     SETTINGS: 'settings',
     STATIC: 'static',
     SIGNOUT: 'signout',
@@ -40,11 +39,6 @@ export const MENU_ITEMS: any = [
         key: MENU_ITEM_KEYS.PRODUCTS,
         icon: <ShopOutlined />,
         label: 'Products',
-    },
-    {
-        key: MENU_ITEM_KEYS.ACCOUNTS,
-        icon: <TeamOutlined />,
-        label: 'Accounts',
     },
     {
         key: MENU_ITEM_KEYS.SIGNOUT,
