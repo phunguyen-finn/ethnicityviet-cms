@@ -17,7 +17,3 @@ const FirebaseApp = initializeApp(firebaseConfig);
 export const Db = getFirestore(FirebaseApp);
 export const Auth = getAuth(FirebaseApp);
 export const Storage = getStorage(FirebaseApp);
-
-// this is used to create accounts without signing in
-const TemporaryFirebaseApp = initializeApp(firebaseConfig, "TemporaryFirebaseApp");
-export const TemporaryAuth = getAuth(TemporaryFirebaseApp);
