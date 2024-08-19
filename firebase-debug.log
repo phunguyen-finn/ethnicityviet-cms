@@ -1,0 +1,57 @@
+[debug] [2024-08-19T09:57:02.462Z] ----------------------------------------------------------------------
+[debug] [2024-08-19T09:57:02.469Z] Command:       /Users/user/Library/Application Support/Herd/config/nvm/versions/node/v22.6.0/bin/node /Users/user/Library/Application Support/Herd/config/nvm/versions/node/v22.6.0/bin/firebase init hosting:github
+[debug] [2024-08-19T09:57:02.469Z] CLI Version:   13.15.2
+[debug] [2024-08-19T09:57:02.469Z] Platform:      darwin
+[debug] [2024-08-19T09:57:02.470Z] Node Version:  v22.6.0
+[debug] [2024-08-19T09:57:02.470Z] Time:          Mon Aug 19 2024 16:57:02 GMT+0700 (Indochina Time)
+[debug] [2024-08-19T09:57:02.470Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-08-19T09:57:02.538Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-08-19T09:57:02.538Z] > authorizing via signed-in user (nnphongphu@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/user/Documents/ethnicity-vietnam/ethnicity-vietname-cms-client
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-08-19T09:57:02.542Z] Using project from CLI flag: ethnicityviet-47a8d
+[debug] [2024-08-19T09:57:02.545Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/ethnicityviet-47a8d [none]
+[debug] [2024-08-19T09:57:03.110Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/ethnicityviet-47a8d 200
+[debug] [2024-08-19T09:57:03.111Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/ethnicityviet-47a8d {"projectId":"ethnicityviet-47a8d","projectNumber":"911662424218","displayName":"ethnicityviet","name":"projects/ethnicityviet-47a8d","resources":{"hostingSite":"ethnicityviet-47a8d","storageBucket":"ethnicityviet-47a8d.appspot.com","locationId":"asia-southeast1"},"state":"ACTIVE","etag":"1_51c49bd1-2397-47e1-b67b-57b9edc30017"}
+[info] i  Using project ethnicityviet-47a8d (ethnicityviet) 
+[info] 
+=== Hosting:github Setup
+[info] 
+[info] i  Detected a .git folder at /Users/user/Documents/ethnicity-vietnam/ethnicity-vietname-cms-client 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=431826857&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
+[debug] [2024-08-19T09:57:04.188Z] >>> [apiv2][query] POST https://github.com/login/oauth/access_token [none]
+[debug] [2024-08-19T09:57:04.189Z] >>> [apiv2][body] POST https://github.com/login/oauth/access_token [stream]
+[debug] [2024-08-19T09:57:04.778Z] <<< [apiv2][status] POST https://github.com/login/oauth/access_token 200
+[debug] [2024-08-19T09:57:04.779Z] <<< [apiv2][body] POST https://github.com/login/oauth/access_token {"access_token":"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","token_type":"bearer","scope":"read:user,repo"}
+[debug] [2024-08-19T09:57:04.781Z] >>> [apiv2][query] GET https://api.github.com/user [none]
+[debug] [2024-08-19T09:57:05.325Z] <<< [apiv2][status] GET https://api.github.com/user 200
+[debug] [2024-08-19T09:57:05.326Z] <<< [apiv2][body] GET https://api.github.com/user {"login":"nnphongphu","id":51812393,"node_id":"MDQ6VXNlcjUxODEyMzkz","avatar_url":"https://avatars.githubusercontent.com/u/51812393?v=4","gravatar_id":"","url":"https://api.github.com/users/nnphongphu","html_url":"https://github.com/nnphongphu","followers_url":"https://api.github.com/users/nnphongphu/followers","following_url":"https://api.github.com/users/nnphongphu/following{/other_user}","gists_url":"https://api.github.com/users/nnphongphu/gists{/gist_id}","starred_url":"https://api.github.com/users/nnphongphu/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/nnphongphu/subscriptions","organizations_url":"https://api.github.com/users/nnphongphu/orgs","repos_url":"https://api.github.com/users/nnphongphu/repos","events_url":"https://api.github.com/users/nnphongphu/events{/privacy}","received_events_url":"https://api.github.com/users/nnphongphu/received_events","type":"User","site_admin":false,"name":"Phong-Phu Nguyen","company":null,"blog":"","location":null,"email":null,"hireable":null,"bio":null,"twitter_username":null,"notification_email":null,"public_repos":17,"public_gists":0,"followers":0,"following":4,"created_at":"2019-06-14T05:28:41Z","updated_at":"2024-07-29T11:29:31Z","private_gists":0,"total_private_repos":16,"owned_private_repos":15,"disk_usage":341358,"collaborators":11,"two_factor_authentication":true,"plan":{"name":"pro","space":976562499,"collaborators":0,"private_repos":9999}}
+[info] 
+[info] ✔  Success! Logged into GitHub as nnphongphu 
+[info] 
