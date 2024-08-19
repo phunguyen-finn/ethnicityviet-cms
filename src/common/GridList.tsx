@@ -54,6 +54,7 @@ export function GridList({ loadData, handleDelete }: GridListProps) {
 
     useEffect(() => {
         loadMoreData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleEdit = (id: string) => {

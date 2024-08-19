@@ -92,6 +92,7 @@ export const PostsList = ({ loadData }: postsListProps) => {
 
     useEffect(() => {
         loadMoreData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

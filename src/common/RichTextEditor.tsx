@@ -66,7 +66,7 @@ export function RichTextEditor(props: any) {
                 image: imageHandler,
             },
         }
-    }), []);
+    }), [imageHandler]);
 
     return <ReactQuill ref={reactQuillRef} theme="snow" modules={modules} formats={formats} {...props} />;
 }

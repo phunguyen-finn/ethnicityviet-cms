@@ -1,5 +1,5 @@
 import { UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input, Layout, Typography, App } from 'antd';
+import { Button, Form, Input, Layout, Typography, App } from 'antd';
 import { validateMessages } from 'constants/index';
 import AuthContext from 'contexts/AuthContext';
 import { useContext } from 'react';

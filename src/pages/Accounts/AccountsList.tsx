@@ -37,7 +37,7 @@ export function AccountsList() {
         });
     }
 
-    const renderItem = useCallback((item: User) => {
+    const renderItem = (item: User) => {
         const description = (
             <>
                 <Typography.Text style={{ color: "gray" }}>
@@ -63,7 +63,7 @@ export function AccountsList() {
                 />
             </List.Item >
         );
-    }, []);
+    };
 
     if (loading)
         return null;

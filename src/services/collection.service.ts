@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs, orderBy, query, setDoc, addDoc, startAfter, limit, Timestamp, deleteDoc, where } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, orderBy, query, setDoc, addDoc, startAfter, limit, Timestamp, deleteDoc } from "firebase/firestore";
 import { Db } from "./firebase";
 import { Auth } from "./firebase";
 import PatternService from "./pattern.service";
@@ -66,9 +66,7 @@ export const CollectionService = {
     deleteCollection: async (id: string) => {
         const collectionRef = doc(Db, "collections", id);
         const patterns = await PatternService.getPatternsByCollection(id);
-        const arr = patterns.map((pattern) => {
-            PatternService.removeCollectionFromPattern(pattern.id);
-        });
+        const arr = patterns.map((pattern) => PatternService.removeCollectionFromPattern(pattern.id));
         await Promise.all(arr);
         await deleteDoc(collectionRef);
     }
