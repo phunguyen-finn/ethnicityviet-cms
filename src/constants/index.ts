@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 export const validateMessages = {
     default: 'Field validation error for ${label}',
     required: 'The field ${label} is required',

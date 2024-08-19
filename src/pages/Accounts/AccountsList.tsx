@@ -2,7 +2,7 @@ import AuthService from "services/auth.service";
 import { App, Button, Divider, Layout, List, Typography } from "antd";
 import { Link } from "react-router-dom";
 import UserService, { User } from "services/user.service";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CalendarOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 
 const contentStyle: React.CSSProperties = {
