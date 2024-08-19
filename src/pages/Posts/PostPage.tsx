@@ -1,4 +1,4 @@
-import { Layout, Breadcrumb, Typography, App } from "antd";
+import { Layout, Breadcrumb, App } from "antd";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import PostService from "services/post.service";
 import { useEffect, useState } from "react";
@@ -40,7 +40,7 @@ export function PostPage() {
     }
 
     const handleCreate = (post: any) => {
-        message.loading('Create resource...', 0);
+        message.loading('Creating resource...', 0);
         PostService.createPost(post).then(() => {
             message.destroy();
             message.success('Create resource successfully', 5);

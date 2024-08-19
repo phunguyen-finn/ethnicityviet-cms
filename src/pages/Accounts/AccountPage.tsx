@@ -15,7 +15,7 @@ export function AccountPage() {
     const { message } = App.useApp();
 
     const handleCreate = (account: any) => {
-        message.loading('Create resource...', 0);
+        message.loading('Creating resource...', 0);
         AuthService.register(account.username, account.password).then(() => {
             message.destroy();
             message.success('Create resource successfully', 5);
