@@ -19,7 +19,6 @@ import CollectionsList from 'pages/Collections/CollectionsList';
 import CollectionPage from 'pages/Collections/CollectionPage';
 import ResetPasswordPage from 'pages/ResetPassword';
 import AccountsList from 'pages/Accounts/AccountsList';
-import AccountPage from 'pages/Accounts/AccountPage';
 
 function AppRoutes() {
     return (
@@ -46,7 +45,6 @@ function AppRoutes() {
                     </Route>
                     <Route path='/accounts' element={<AccountsPage />} >
                         <Route path='/accounts' element={<AccountsList />} />
-                        <Route path='/accounts/create' element={<AccountPage />} />
                     </Route>
                     <Route path='static' element={<StaticPage />} />
                     <Route path='*' element={<ErrorPage />} />

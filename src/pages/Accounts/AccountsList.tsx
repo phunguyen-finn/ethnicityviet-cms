@@ -1,18 +1,8 @@
 import AuthService from "services/auth.service";
-import { App, Button, Divider, Layout, List, Typography } from "antd";
-import { Link } from "react-router-dom";
+import { App, Divider, Layout, List, Typography } from "antd";
 import UserService, { User } from "services/user.service";
 import { useEffect, useState } from "react";
 import { CalendarOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
-
-const contentStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'row',
-    width: 800,
-    height: 40,
-    justifyContent: 'end',
-    marginBottom: 16
-}
 
 export function AccountsList() {
     const [users, setUsers] = useState<User[]>([]);
@@ -70,12 +60,7 @@ export function AccountsList() {
 
     return (
         <Layout>
-            <div style={contentStyle}>
-                <Link to="/accounts/create" style={{ width: 75 }}>
-                    <Button type='primary' style={{ position: 'absolute' }}>Create</Button>
-                </Link>
-            </div>
-            <List
+            <List style={{ marginTop: '16px' }}
                 dataSource={users}
                 renderItem={renderItem}
             />

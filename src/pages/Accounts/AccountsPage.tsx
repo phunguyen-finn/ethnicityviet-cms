@@ -10,8 +10,8 @@ const layoutStyle: React.CSSProperties = {
 
 const description = (
     <>
-        You can create new account here, but cannot delete existing accounts for security reasons.
-        Only create accounts when necessary and use strong password. This section is dangerous, please dont mess around.
+        For security reasons, you can only create/delete accounts from the firebase console.
+        Please contact administrator for more information.
     </>
 )
 
