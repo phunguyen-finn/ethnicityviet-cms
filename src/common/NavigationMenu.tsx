@@ -127,7 +127,7 @@ export default function NavigationMenu() {
         <Menu
             style={{
                 width: 256,
-                height: "calc(100vh - 60px - 54px)",
+                height: "calc(100vh - 80px - 54px)",
                 textAlign: "left",
             }}
             mode="inline"
