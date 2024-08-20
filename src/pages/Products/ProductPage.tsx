@@ -1,8 +1,10 @@
-import { Layout, Breadcrumb, App } from "antd";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProductService from "services/product.service";
 import ProductForm from "./ProductForm";
+import Layout from "antd/es/layout";
+import Breadcrumb from "antd/es/breadcrumb";
+import App from "antd/es/app";
 
 const layoutStyle = {
     justifyContent: "center",

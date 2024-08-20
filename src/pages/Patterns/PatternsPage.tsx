@@ -1,7 +1,7 @@
-import { Layout } from 'antd';
 import { CopyOutlined } from '@ant-design/icons';
 import { Outlet } from 'react-router-dom';
 import Header from 'common/Header';
+import Layout from 'antd/es/layout';
 
 const description = (
     <>

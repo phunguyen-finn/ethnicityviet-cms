@@ -1,10 +1,10 @@
-import { Menu } from "antd";
 import { EditOutlined, LogoutOutlined, ShopOutlined, GoogleOutlined, CodeOutlined, GithubOutlined, FolderOpenOutlined, CopyOutlined } from "@ant-design/icons";
 import { useLocation, useNavigate } from "react-router-dom";
 import AuthService from "services/auth.service";
 import { useContext } from "react";
 import AuthContext from "contexts/AuthContext";
 import Typography from "antd/es/typography/Typography";
+import Menu from "antd/es/menu";
 
 export const MENU_ITEM_KEYS = {
     POSTS: 'posts',

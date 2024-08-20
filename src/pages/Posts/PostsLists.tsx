@@ -1,9 +1,11 @@
-import { Button, Layout, Tabs } from "antd";
 import { DeploymentUnitOutlined, FolderOpenOutlined, PullRequestOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { Timestamp } from "firebase/firestore";
+import { Timestamp } from "firebase/firestore/lite";
 import PostService, { POST_STATUS } from "services/post.service";
 import PostsList from "./PostsList";
+import Button from 'antd/es/button';
+import Layout from 'antd/es/layout';
+import Tabs from 'antd/es/tabs';
 
 const loadData = (status: POST_STATUS) => (cursor: Timestamp | undefined) => {
     return PostService.getPostsByStatus(status, cursor) as any;

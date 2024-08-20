@@ -4,6 +4,10 @@ import MainApp from 'pages/MainApp';
 import 'App.css';
 import ErrorPage from 'pages/ErrorPage';
 import ResetPasswordPage from 'pages/ResetPassword';
+import PostsPage from 'pages/Posts/PostsPage';
+import PatternsPage from 'pages/Patterns/PatternsPage';
+import CollectionsPage from 'pages/Collections/CollectionsPage';
+import ProductsPage from 'pages/Products/ProductsPage';
 
 export const router = createBrowserRouter([
     {
@@ -21,10 +25,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                lazy: async () => {
-                    const def = await import("pages/Posts/PostsPage");
-                    return { Component: def.PostsPage }
-                },
+                element: <PostsPage />,
                 children: [
                     {
                         path: "/",
@@ -44,10 +45,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/patterns",
-                lazy: async () => {
-                    const def = await import("pages/Patterns/PatternsPage");
-                    return { Component: def.PatternsPage }
-                },
+                element: <PatternsPage />,
                 children: [
                     {
                         path: "/patterns",
@@ -67,10 +65,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/collections",
-                lazy: async () => {
-                    const def = await import("pages/Collections/CollectionsPage");
-                    return { Component: def.CollectionsPage }
-                },
+                element: <CollectionsPage />,
                 children: [
                     {
                         path: "/collections",
@@ -90,10 +85,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/products",
-                lazy: async () => {
-                    const def = await import("pages/Products/ProductsPage");
-                    return { Component: def.ProductsPage }
-                },
+                element: <ProductsPage />,
                 children: [
                     {
                         path: "/products",

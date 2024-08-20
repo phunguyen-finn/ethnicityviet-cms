@@ -1,7 +1,7 @@
-import { Layout } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
 import { Outlet } from 'react-router-dom';
 import Header from 'common/Header';
+import Layout from 'antd/es/layout';
 
 const layoutStyle = {
   display: "flex",

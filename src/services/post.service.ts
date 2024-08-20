@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs, where, orderBy, query, setDoc, addDoc, startAfter, limit, Timestamp } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, where, orderBy, query, setDoc, addDoc, startAfter, limit, Timestamp } from "firebase/firestore/lite";
 import { Db } from "./firebase";
 import { Auth } from "./firebase";
 

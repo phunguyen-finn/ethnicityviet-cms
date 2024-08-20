@@ -1,9 +1,12 @@
-import { Button, Layout, Tabs } from "antd";
 import { DeploymentUnitOutlined, FolderOpenOutlined, HighlightOutlined, PullRequestOutlined } from "@ant-design/icons";
 import PatternService, { PATTERN_CATEGORY } from "services/pattern.service";
 import { Link } from "react-router-dom";
-import { Timestamp } from "firebase/firestore";
+import { Timestamp } from "firebase/firestore/lite";
 import GridList from "common/GridList";
+import Button from "antd/es/button";
+import Layout from "antd/es/layout";
+import Tabs from "antd/es/tabs";
+
 
 const loadData = (category: PATTERN_CATEGORY) => (cursor: Timestamp | undefined) => {
     return PatternService.getPatternsByCategory(category, cursor);

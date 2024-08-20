@@ -1,10 +1,15 @@
-import { Form, Input, Radio, Upload, Button, Image } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { validateMessages } from "constants/index";
 import StorageService from "services/storage.service";
 import { makeThumbnail } from "utils/thumbnail";
 import { Product } from "services/product.service";
+import Form from "antd/es/form";
+import Input from "antd/es/input";
+import Radio from "antd/es/radio";
+import Upload from "antd/es/upload";
+import Button from "antd/es/button";
+import Image from "antd/es/image";
 
 const uploadButton = (
     <button

@@ -1,7 +1,7 @@
-import { Layout } from 'antd';
 import { Outlet } from 'react-router-dom';
 import { ShopOutlined } from '@ant-design/icons';
 import Header from 'common/Header';
+import Layout from 'antd/es/layout';
 
 const layoutStyle: React.CSSProperties = {
     display: "flex",

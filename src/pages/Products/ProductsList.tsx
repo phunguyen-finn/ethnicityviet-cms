@@ -1,7 +1,8 @@
-import { Button, Layout } from "antd";
 import GridList from "common/GridList";
 import { Link } from "react-router-dom";
 import ProductService from "services/product.service";
+import Button from 'antd/es/button';
+import Layout from 'antd/es/layout';
 
 const contentStyle: React.CSSProperties = {
     display: 'flex',

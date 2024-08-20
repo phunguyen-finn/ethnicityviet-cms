@@ -1,10 +1,15 @@
-import { Divider, List, Skeleton, Space, Badge } from 'antd';
 import { CalendarOutlined, UserOutlined } from '@ant-design/icons';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import React, { useEffect, useState } from 'react';
 import { Post } from 'services/post.service';
 import { Link } from 'react-router-dom';
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp } from 'firebase/firestore/lite';
+import Divider from 'antd/es/divider';
+import List from 'antd/es/list';
+import Skeleton from 'antd/es/skeleton';
+import Space from 'antd/es/space';
+import Badge from 'antd/es/badge';
+
 
 const scrollableDivStyle = {
     height: 'calc(100vh - 220px)',

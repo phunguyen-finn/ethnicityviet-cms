@@ -1,7 +1,10 @@
-import { App, Divider, List, Skeleton } from 'antd';
+import App from 'antd/es/app';
+import Divider from 'antd/es/divider';
+import List from 'antd/es/list';
+import Skeleton from 'antd/es/skeleton';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useEffect, useState } from 'react';
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp } from 'firebase/firestore/lite';
 import { useNavigate } from 'react-router-dom';
 import CardItem from './CardItem';
 

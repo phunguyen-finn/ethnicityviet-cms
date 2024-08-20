@@ -1,4 +1,5 @@
-import { Layout, Typography } from "antd"
+import Layout from "antd/es/layout";
+import Typography from "antd/es/typography";
 
 interface headerProps {
     icon: React.ReactNode;

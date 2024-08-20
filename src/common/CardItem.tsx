@@ -1,5 +1,9 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Card, List, Badge, Typography, Popconfirm } from "antd";
+import Card from "antd/es/card";
+import List from "antd/es/list";
+import Badge from "antd/es/badge";
+import Typography from "antd/es/typography";
+import Popconfirm from "antd/es/popconfirm";
 
 export function CardItem({ item, handleDelete, handleEdit }: any) {
     const actions = [

@@ -1,7 +1,7 @@
-import { Layout, } from 'antd';
 import NavigationMenu from 'common/NavigationMenu'
 import { ProtectedRoute } from 'common/ProtectedRoute';
 import { Outlet } from 'react-router-dom';
+import Layout from 'antd/es/layout';
 
 export function MainApp() {
     return (

@@ -1,6 +1,6 @@
 import AuthContext from 'contexts/AuthContext';
 import { useAuth } from 'hooks/useAuth';
-import { App } from 'antd';
+import App from 'antd/es/app';
 import 'App.css';
 import { RouterProvider } from 'react-router-dom';
 import router from './routes';

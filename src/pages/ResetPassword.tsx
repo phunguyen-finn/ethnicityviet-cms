@@ -1,10 +1,16 @@
 import { UserOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Layout, Typography, App } from 'antd';
 import { validateMessages } from 'constants/index';
 import AuthContext from 'contexts/AuthContext';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthService from 'services/auth.service';
+import Button from 'antd/es/button';
+import Form from 'antd/es/form';
+import Input from 'antd/es/input';
+import Layout from 'antd/es/layout';
+import Typography from 'antd/es/typography';
+import App from 'antd/es/app';
+
 
 const layoutStyle: React.CSSProperties = {
     width: '100vw',
