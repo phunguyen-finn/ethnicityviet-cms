@@ -65,7 +65,7 @@ export function PostPage() {
             <Layout>
                 <Breadcrumb style={{ marginBottom: 10 }}>
                     <Breadcrumb.Item>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item><Link to="/">Products</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to="/">Posts</Link></Breadcrumb.Item>
                     <Breadcrumb.Item>{postId === 'create' ? 'Create' : post.title}</Breadcrumb.Item>
                 </Breadcrumb>
                 <PostForm initialData={post} onSubmit={postId === 'create' ? handleCreate : handleUpdate} />
