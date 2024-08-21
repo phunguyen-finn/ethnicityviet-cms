@@ -65,7 +65,7 @@ export function CollectionForm({ initialData, onSubmit }: { initialData?: Collec
     >
         <Form.Item label="Language" name="language" rules={[{ required: true }]}>
             <Radio.Group>
-                <Radio.Button value="vn">VN</Radio.Button>
+                <Radio.Button value="vi">VN</Radio.Button>
                 <Radio.Button value="en">EN</Radio.Button>
             </Radio.Group>
         </Form.Item>
