@@ -42,24 +42,21 @@ const renderItem = (item: Post) => (
             />
         ]}
         extra={
-            <img
-                width={250}
-                alt="thumbnail"
-                src={item.thumbnailUrl}
-            />
+            <Badge.Ribbon text={item.language.toUpperCase()}>
+                <img
+                    width={200}
+                    alt="thumbnail"
+                    src={item.thumbnailUrl}
+                />
+            </Badge.Ribbon>
         }
     >
         <List.Item.Meta
             title={
-                <Badge
-                    color={"blue"}
-                    count={item.language.toUpperCase()}
-                    offset={[20, 7]}
-                >
-                    <Link to={`/posts/${item.id}`}>
-                        {item.title}
-                    </Link>
-                </Badge>}
+                <Link to={`/posts/${item.id}`}>
+                    {item.title}
+                </Link>
+            }
         />
         {item.description}
     </List.Item>
