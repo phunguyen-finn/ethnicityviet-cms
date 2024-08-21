@@ -75,7 +75,7 @@ export function PostForm({ initialData, onSubmit }: { initialData?: Post, onSubm
         <Form.Item
             label='Title'
             name='title'
-            rules={[{ required: true }, { max: 100 }, { min: 10 }]}
+            rules={[{ required: true }, { max: 200 }, { min: 10 }]}
         >
             <Input placeholder="Let us know the title" />
         </Form.Item>
@@ -84,7 +84,7 @@ export function PostForm({ initialData, onSubmit }: { initialData?: Post, onSubm
             name='description'
             rules={[{ required: true }, { min: 50 }]}
         >
-            <Input.TextArea showCount maxLength={500} style={{ height: 150 }} placeholder="Describe your post here" />
+            <Input.TextArea showCount maxLength={600} style={{ height: 150 }} placeholder="Describe your post here" />
         </Form.Item>
         <Form.Item label="Category" name="category" rules={[{ required: true }]} >
             <Select style={{ width: 130 }} placeholder="Category">
