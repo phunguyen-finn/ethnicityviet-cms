@@ -1,4 +1,4 @@
-# Ethnicity Vietnam Core Web Application
+# Ethnicity Vietnam CMS Client Application
 
 <p align="center">
 <a href="https://www.npmjs.com/package/react"><img src="https://img.shields.io/badge/React-18.0-blue.svg" alt="React"></a>
@@ -8,7 +8,7 @@
 </p>
 
 
-This repo holds the source code for Ethnicity Vietnam's application, written using [React](https://www.npmjs.com/package/react).
+This repo holds the source code for Ethnicity Vietnam's CMS application, written using [React](https://www.npmjs.com/package/react).
 
 Latest revision: Aug 22nd, 2024.
 
@@ -16,11 +16,10 @@ Please contact [Phu Nguyen](https://fb.com/nnphongphu) for further inquiry.
 
 ## Infrastructure
 All infrastructures for hosting this web application are provided by the following cloud providers:
-1. Hosting: [Vercel](https://vercel.com)
+1. Hosting: [Firbase static hosting](https://firebase.google.com)
 2. Database: [Firestore](https://firebase.google.com)
 3. Storage: [Cloud storage for Firebase](https://firebase.google.com)
 4. Authentication: [Firebase authentication](https://firebase.google.com)
-5. Mail Service: [Resend](https://resend.com)
 
 For involved parties & maintainers, please contact me to get console access to these services.
 
