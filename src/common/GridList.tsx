@@ -88,6 +88,7 @@ export function GridList({ loadData, handleDelete }: GridListProps) {
                 scrollableTarget="scrollableDiv"
             >
                 <List
+                    grid={{ column: 3, gutter: 10 }}
                     style={{ width: '100%', overflowX: 'hidden' }}
                     dataSource={data}
                     renderItem={renderItem}
