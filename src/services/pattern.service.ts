@@ -77,6 +77,10 @@ export const PatternService = {
     },
     createPattern: (data: Partial<Pattern>) => {
         if (!Auth.currentUser) return Promise.reject(new Error("Must be logged in to create resource"));
+        if (data.collectionId == null) {
+            const { collectionId, ...rest } = data;
+            return addDoc(collection(Db, "patterns"), { ...rest, createdAt: Timestamp.now(), updatedAt: Timestamp.now(), createdBy: Auth.currentUser?.email });
+        }
         return addDoc(collection(Db, "patterns"), { ...data, createdAt: Timestamp.now(), updatedAt: Timestamp.now(), createdBy: Auth.currentUser?.email });
     },
     deletePattern: (id: string) => {
