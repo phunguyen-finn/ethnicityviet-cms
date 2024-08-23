@@ -3,7 +3,7 @@
 <p align="center">
 <a href="https://www.npmjs.com/package/react"><img src="https://img.shields.io/badge/React-18.0-blue.svg" alt="React"></a>
 <a href="https://nodejs.org/en"><img src="https://img.shields.io/badge/Node-20.17-green.svg" alt="Node 20.17.5"></a>
-<a href="https://www.selenium.dev/blog/2024/selenium-4-18-released"><img src="https://img.shields.io/badge/firebase-latest-yellow.svg" alt="Firebase"></a>
+<a href="https://www.firebase.google.com"><img src="https://img.shields.io/badge/firebase-latest-yellow.svg" alt="Firebase"></a>
 <a href="https://www.npmjs.com/package/antd"><img src="https://img.shields.io/badge/antd-4.24-red.svg" alt="Ant design"></a>
 </p>
 
