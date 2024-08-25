@@ -91,7 +91,7 @@ export const PostsList = ({ loadData }: postsListProps) => {
                         okText="Confirm"
                         cancelText="Cancel"
                     >
-                        <Button type='primary' danger><DeleteOutlined />Xoá</Button>
+                        <Button type='primary' danger><DeleteOutlined />Delete</Button>
                     </Popconfirm>
                 </div>
             }
