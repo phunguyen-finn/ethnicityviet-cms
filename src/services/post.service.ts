@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs, where, orderBy, query, setDoc, addDoc, startAfter, limit, Timestamp } from "firebase/firestore/lite";
+import { collection, doc, getDoc, getDocs, where, orderBy, query, setDoc, addDoc, startAfter, limit, Timestamp, deleteDoc } from "firebase/firestore/lite";
 import { Db } from "./firebase";
 import { Auth } from "./firebase";
 
@@ -68,6 +68,9 @@ export const PostService = {
         if (!Auth.currentUser) return Promise.reject(new Error("Must be logged in to create resource"));
         return addDoc(collection(Db, "posts"), { ...data, createdAt: Timestamp.now(), updatedAt: Timestamp.now(), createdBy: Auth.currentUser?.email });
     },
+    deletePost: (id: string) => {
+        return deleteDoc(doc(Db, "posts", id));
+    }
 };
 
 export default PostService;

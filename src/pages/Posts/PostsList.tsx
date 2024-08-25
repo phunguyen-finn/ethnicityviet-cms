@@ -1,7 +1,7 @@
-import { CalendarOutlined, UserOutlined } from '@ant-design/icons';
+import { CalendarOutlined, DeleteOutlined, UserOutlined } from '@ant-design/icons';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import React, { useEffect, useState } from 'react';
-import { Post } from 'services/post.service';
+import PostService, { Post } from 'services/post.service';
 import { Link } from 'react-router-dom';
 import { Timestamp } from 'firebase/firestore/lite';
 import Divider from 'antd/es/divider';
@@ -9,6 +9,7 @@ import List from 'antd/es/list';
 import Skeleton from 'antd/es/skeleton';
 import Space from 'antd/es/space';
 import Badge from 'antd/es/badge';
+import { App, Button, Popconfirm } from 'antd';
 
 
 const scrollableDivStyle = {
@@ -25,42 +26,6 @@ const IconText = ({ icon, text }: any) => (
         {text}
     </Space>
 );
-
-const renderItem = (item: Post) => (
-    <List.Item
-        key={item.id}
-        actions={[
-            <IconText
-                icon={UserOutlined}
-                text={`Author by ${item.createdBy}`}
-                key="author"
-            />,
-            <IconText
-                icon={CalendarOutlined}
-                text={`Updated at ${item.updatedAt.toLocaleString()}`}
-                key="updatedAt"
-            />
-        ]}
-        extra={
-            <Badge.Ribbon text={item.language.toUpperCase()}>
-                <img
-                    width={200}
-                    alt="thumbnail"
-                    src={item.thumbnailUrl}
-                />
-            </Badge.Ribbon>
-        }
-    >
-        <List.Item.Meta
-            title={
-                <Link to={`/posts/${item.id}`}>
-                    {item.title}
-                </Link>
-            }
-        />
-        {item.description}
-    </List.Item>
-)
 
 const mergeLists = (data: Post[], newData: Post[]) => {
     data = [...data];
@@ -79,6 +44,68 @@ export const PostsList = ({ loadData }: postsListProps) => {
     const [data, setData] = useState<Post[]>([]);
     const [cursor, setCursor] = useState<Timestamp | undefined>(undefined);
     const [hasMore, setHasMore] = useState(true);
+    const { message } = App.useApp();
+
+
+    const renderItem = (item: Post) => (
+        <List.Item
+            key={item.id}
+            actions={[
+                <IconText
+                    icon={UserOutlined}
+                    text={`Author by ${item.createdBy}`}
+                    key="author"
+                />,
+                <IconText
+                    icon={CalendarOutlined}
+                    text={`Updated at ${item.updatedAt.toLocaleString()}`}
+                    key="updatedAt"
+                />
+            ]}
+            extra={
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', rowGap: '10px' }}>
+                    <Badge.Ribbon text={item.language}>
+                        <div style={{ width: '200px', height: '200px', position: 'relative' }}>
+                            <img
+                                width={200}
+                                alt="thumbnail"
+                                src={item.thumbnailUrl}
+                                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                            />
+                        </div>
+                    </Badge.Ribbon>
+                    <Popconfirm
+                        title="Deleting this post"
+                        description="Are you sure?"
+                        onConfirm={() => {
+                            message.loading('Deleting...', 0);
+                            PostService.deletePost(item.id).then(() => {
+                                message.destroy();
+                                message.success('Deleted successfully!', 5);
+                                setData(data.filter((post) => post.id !== item.id));
+                            }).catch((error) => {
+                                message.destroy();
+                                message.error('Deleted failed: ' + error.message, 5);
+                            });
+                        }}
+                        okText="Confirm"
+                        cancelText="Cancel"
+                    >
+                        <Button type='primary' danger><DeleteOutlined />Xoá</Button>
+                    </Popconfirm>
+                </div>
+            }
+        >
+            <List.Item.Meta
+                title={
+                    <Link to={`/posts/${item.id}`}>
+                        {item.title}
+                    </Link>
+                }
+            />
+            {item.description}
+        </List.Item>
+    );
 
     const loadMoreData = () => {
         if (loading) return;

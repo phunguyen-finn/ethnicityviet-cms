@@ -1,4 +1,4 @@
-import { EditOutlined, LogoutOutlined, ShopOutlined, GoogleOutlined, CodeOutlined, GithubOutlined, FolderOpenOutlined, CopyOutlined } from "@ant-design/icons";
+import { EditOutlined, LogoutOutlined, ShopOutlined, GoogleOutlined, CodeOutlined, GithubOutlined, FolderOpenOutlined, CopyOutlined, GlobalOutlined } from "@ant-design/icons";
 import { useLocation, useNavigate } from "react-router-dom";
 import AuthService from "services/auth.service";
 import { useContext } from "react";
@@ -17,6 +17,8 @@ export const MENU_ITEM_KEYS = {
     GOOGLE_ANALYTICS: 'google-analytics',
     CONSOLE: 'console',
     GITHUB: 'github',
+    GITHUB_CMS: 'github-cms',
+    VISIT: 'visit',
 }
 
 export const MENU_ITEMS: any = [
@@ -53,6 +55,21 @@ export const MENU_ITEMS: any = [
         label: 'External Links',
         children: [
             {
+                key: MENU_ITEM_KEYS.VISIT,
+                icon: <GlobalOutlined />,
+                label: 'Public Site'
+            },
+            {
+                key: MENU_ITEM_KEYS.GITHUB_CMS,
+                icon: <GithubOutlined />,
+                label: 'GitHub CMS'
+            },
+            {
+                key: MENU_ITEM_KEYS.GITHUB,
+                icon: <GithubOutlined />,
+                label: 'GitHub'
+            },
+            {
                 key: MENU_ITEM_KEYS.GOOGLE_ANALYTICS,
                 icon: <GoogleOutlined />,
                 label: 'Google Analytics'
@@ -61,11 +78,6 @@ export const MENU_ITEMS: any = [
                 key: MENU_ITEM_KEYS.CONSOLE,
                 icon: <CodeOutlined />,
                 label: 'Console'
-            },
-            {
-                key: MENU_ITEM_KEYS.GITHUB,
-                icon: <GithubOutlined />,
-                label: 'GitHub'
             },
         ],
     }
@@ -107,7 +119,13 @@ export default function NavigationMenu() {
                 window.open('https://console.firebase.google.com/u/1/project/ethnicityvn/overview');
                 break;
             case MENU_ITEM_KEYS.GITHUB:
+                window.open('https://github.com/nnphongphu/ethnicity-core');
+                break;
+            case MENU_ITEM_KEYS.GITHUB_CMS:
                 window.open('https://github.com/nnphongphu/ethnicityviet-cms-client');
+                break;
+            case MENU_ITEM_KEYS.VISIT:
+                window.open('https://ethnicityviet.com');
                 break;
             case MENU_ITEM_KEYS.SIGNOUT:
                 AuthService.logout();
