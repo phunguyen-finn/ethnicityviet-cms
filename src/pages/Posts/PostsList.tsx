@@ -64,7 +64,7 @@ export const PostsList = ({ loadData }: postsListProps) => {
             ]}
             extra={
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', rowGap: '10px' }}>
-                    <Badge.Ribbon text={item.language}>
+                    <Badge.Ribbon text={item.language.toUpperCase()}>
                         <div style={{ width: '200px', height: '200px', position: 'relative' }}>
                             <img
                                 width={200}
