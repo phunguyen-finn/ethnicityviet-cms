@@ -84,7 +84,7 @@ export function PatternForm({ initialData, onSubmit, collections }: { initialDat
         <Form.Item
             label='Name'
             name='name'
-            rules={[{ required: true }, { max: 100 }, { min: 5 }]}
+            rules={[{ required: true }, { max: 150 }, { min: 5 }]}
         >
             <Input placeholder="Let us know the name of the pattern" />
         </Form.Item>
